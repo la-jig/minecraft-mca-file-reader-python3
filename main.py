@@ -73,7 +73,8 @@ class MainWindow(Tk):
         self.canvas = Canvas(self)
         self.canvas.pack(expand=True)
 
+        self.mainloop()
+
 if __name__ == "__main__":
     window = MainWindow()
     window.build_gui()
-    window.mainloop()
