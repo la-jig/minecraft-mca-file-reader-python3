@@ -16,6 +16,8 @@ class MainWindow(Tk):
     def set_chunk(self, chunk: str, window: Toplevel):
         self.chunk = (int(chunk.split(", ")[0]), int(chunk.split(", ")[1]))
         window.destroy()
+
+        empty_chunk = True
         
         for i in range(16):
             self.update()
@@ -23,7 +25,16 @@ class MainWindow(Tk):
                 self.update()
                 for i2 in range(16):
                     self.update()
-                    print(anvil.Chunk.from_region(self.region, self.chunk[0], self.chunk[1]).get_block(i, i1, i2))
+                    block_data = anvil.Chunk.from_region(self.region, self.chunk[0], self.chunk[1]).get_block(i, i1, i2)
+
+                    print(block_data)
+
+                    if block_data.id != "minecraft:air":
+                        empty_chunk = False
+
+
+        if empty_chunk == True:
+            messagebox.showinfo("Empty Chunk", f"The chunk {self.chunk[0]}, {self.chunk[1]} is empty!")
 
 
     def open_file(self):
