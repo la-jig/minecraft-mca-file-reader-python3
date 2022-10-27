@@ -27,9 +27,8 @@ class MainWindow(Tk):
                     self.update()
                     block_data = anvil.Chunk.from_region(self.region, self.chunk[0], self.chunk[1]).get_block(i, i1, i2)
 
-                    print(block_data)
 
-                    if block_data.id != "minecraft:air":
+                    if block_data.id != "air":
                         empty_chunk = False
 
 
